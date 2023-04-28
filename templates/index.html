@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/icons/#">
+    <style>
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow-x: hidden;
+            box-sizing: border-box;
+            display: flex;
+            background: white;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: 0.69s ease !important;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-family: sans-serif;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-family: sans-serif;
+        }
+
+        .text {
+            margin-bottom: 50px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 25%;
+        }
+
+        form input {
+            border: 1px solid black;
+            background: transparent;
+            font-family: sans-serif;
+            padding: 10px 50px 10px;
+            border-radius: 5px;
+            cursor: text;
+            margin-bottom: 10px;
+            transition: 0.3s ease;
+        }
+
+        form button {
+            background: black;
+            color: white;
+            padding: 10px 50px 10px;
+            border: none;
+            border-radius: 5px;
+            font-family: sans-serif;
+            margin-bottom: 50px;
+            transition: 0.69s ease;
+        }
+
+        form button:hover {
+            opacity: 0.75;
+            cursor: pointer;
+        }
+
+        #dark-mode-toggle {
+            background: white;
+            color: white;
+            padding: 10px;
+            border: 1px solid black;
+            border-radius: 5px;
+            font-family: sans-serif;
+            margin-bottom: 50px;
+            transition: 0.69s ease;
+        }
+
+        footer {
+            font-family: sans-serif;
+        }
+        
+    </style>
+    <title>SunSpot</title>
+</head>
+<body>
+
+    <h1>SunSpot ☀️</h1>
+    <p class="text">Find ideal conditions for solar energy quick!</p>
+
+    <form name="getCity" action="{{ url_for('gfg') }}" method="post" onsubmit="return ">
+        <input name="city" type="text" id="cityInput" placeholder="City" required>
+        <button id="btn" type="submit">Search</button>
+    </form>
+
+    <p id="city">City: {{ city }}</p>
+    <p>Latitude: {{ lat }}</p>
+    <p>Longitude: {{ long }}</p>
+    <p>Optimal Rotation: {{ optimal_rotation }}</p>
+    <p>Optimal Months: {{ optimal_times }}</p>
+
+    <br>
+    
+    <button id="dark-mode-toggle">🌙</button>
+
+    <footer>2023 Made by Aaryan Soni and Veenit Sheth.</footer>
+        
+    <script>
+
+        const btn = document.getElementById('dark-mode-toggle');
+        const formInput = document.querySelector('#cityInput');
+        const formBtn = document.querySelector('#btn');
+        
+        btn.addEventListener('click', function() {
+
+            console.log('hi')
+
+            if (document.body.style.background == 'white') {
+                document.body.style.background = 'black';
+                document.body.style.color = 'white';
+                formInput.style.background = 'transparent';
+                formInput.style.border = "1px solid white"
+                formInput.style.color = 'white';
+                formBtn.style.background = 'white';
+                formBtn.style.color = 'black';
+                btn.style.background = "black"
+                btn.style.border = "1px solid white"
+                btn.innerHTML = "☀️"
+            } else {
+                document.body.style.background = 'white';
+                document.body.style.color = 'black';
+                formInput.style.background = 'transparent';
+                formInput.style.border = "1px solid black"
+                formInput.style.color = 'black';
+                formBtn.style.background = 'black';
+                formBtn.style.color = 'white';
+                btn.style.background = "white"
+                btn.style.border = "1px solid black"
+                btn.innerHTML = "🌙"
+            };
+            
+        })
+
+        function validateForm() {
+            let form = document.forms["getCity"]["city"].value;
+            if(x.search(/[a-zA-Z]/gm) == 0 || x == "") {
+                return false;
+            } else return true;
+        }
+
+        
+    </script>
+    
+</body>
+</html>
